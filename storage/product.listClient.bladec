@@ -1,0 +1,36 @@
+<?php $_shouldextend[1]=1; ?>
+<?php $this->startSection('content'); ?>
+<div class="layout_padding gallery_section">
+ 	<div class="container">
+ 		<div class="row">
+ <?php foreach($products as $p):?>
+ 			<div class="col-sm-4">
+ 				<div class="best_shoes">
+ 					<p class="best_text"><?php echo \htmlentities($p->name, ENT_QUOTES, 'UTF-8', false); ?></p>
+ 					<div class="shoes_icon"><a href="detailProduct?id=<?php echo \htmlentities($p->id, ENT_QUOTES, 'UTF-8', false); ?>"><img src="<?php echo \htmlentities(BASE_URL . $p->main_image, ENT_QUOTES, 'UTF-8', false); ?>" width = "300px" height = "300px"</a>></div>
+ 					<div class="star_text">
+ 						<div class="left_part">
+ 							<ul>
+ 	    						<li><a href="#"><img src="images/star-icon.png"></a></li>
+ 	    						<li><a href="#"><img src="images/star-icon.png"></a></li>
+ 	    						<li><a href="#"><img src="images/star-icon.png"></a></li>
+ 	    						<li><a href="#"><img src="images/star-icon.png"></a></li>
+ 	    						<li><a href="#"><img src="images/star-icon.png"></a></li>
+ 	    					</ul>
+ 						</div>
+ 						<div class="right_part">
+ 							<div class="shoes_price">$ <span style="color: #ff4e5b;"><?php echo \htmlentities($p->price, ENT_QUOTES, 'UTF-8', false); ?></span></div>
+ 						</div>
+ 					</div>
+ 				</div>
+ 			</div>		
+ <!-- End col -->
+ <?php endforeach?>
+ 		</div>
+ <!-- End row -->
+
+ 		
+ 	</div>
+ </div>
+<?php $this->stopSection(); ?>
+<?php if (isset($_shouldextend[1])) { echo $this->runChild('layout.mainClient'); } ?>

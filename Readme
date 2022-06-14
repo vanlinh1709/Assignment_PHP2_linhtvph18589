@@ -1,0 +1,47 @@
+1. Việc sử dụng autoload + namespace nhằm mục đích gì?
+  Vấn đề: -Trong file index.js muốn sử dụng class từ file Controller.php,
+          thì cần require file Controller.php vào index.js.
+          -Xảy ra vấn đề khi ta cần REQUIRE RẤT NHIỀU class từ 
+          rất nhiều file Controller.
+          =>Script không được gọn.
+            !!!Autoload + namespace xử lý vấn đề này.
+  How use?
+2. Các câu lệnh composer sinh ra những file nào:
+  a. composer illuminate/database sinh ra:
+      +composre.lock 
+      +rất nhiều file trong thư mục vendor
+  b. composrer dumpautoload (đã thêm text vào trong composer.json) sinh ra:
+    +thư mục vendor và vendor/composer + autoload.php
+
+3. Việc kết nối database thực hiện như thế nào?
+  tạo file db-config.php, coppy code trên github/illuminate vào;
+  require file này index;
+
+4. Text trong file .HTACCESS CÓ Ý NGHĨA GÌ?
+-Để ý dòng cuối: RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
+
++Giờ giả sử ta nhập domain: https:///wwww.dantri.vn/the-thao
+->Khi mà server chạy file htaccess. thì nó sẽ chuyển định dạng ở trên domain thành:
+  ^(.+)$ index.php?url=$1 [QSA,L]
+
+Server sau đó sẽ chạy vào file index.php, và ngoài ra ta có biến $url = 'the-thao'.
+
+5. Phân tích 3 chức năng: sửa, thêm, xóa.
+//Lấy đối tượng user là ví dụ
+#Sửa:
+  +Thêm button trên view list.
+    Format nội dung href trên thẻ <a> bọc button: href phải chứa id của đối tượng đang muốn sửa.
+        //<a> sẽ thường có định dạng: index.php/edit-infoUser-Form?id=$.../
+        => Nhờ đó mà trên trang edit-user được chuyển tới ta có thể lấy dữ liệu từ GET. 
+  +Tạo form eidt-infoUser:
+    -Trong form cần chú ý: value trong các input và đường dẫn trong action. Dữ liệu từ hai nơi này 
+    sẽ được truyền cho các hàm làm việc với database
+    -Form(đúng hơn $_post) sẽ được chuyển đến một case mới trong index -> tức là sẽ tới một method trong controler -
+  +Tạo method trong controler để lưu những data từ form gửi đến vào database(cập nhập lại thông tin người dùng)
+
+
+
+
+
+
+          
